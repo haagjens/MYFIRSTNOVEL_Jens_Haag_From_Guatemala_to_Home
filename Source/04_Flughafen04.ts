@@ -9,7 +9,7 @@ namespace myfirstnovel {
 
         let firstDialogueElementAnswers = {
             iPickAnhalter: "Ob mich die Leute hier wohl per Anhalter mit nehmen?",
-            iSayNo: "Hm.. oder soll ich lieber 2 Stunden bis zum Bahnhof laufen?",
+            iPickZug: "Hm.. oder soll ich lieber 2 Stunden bis zum Bahnhof laufen?",
         };
 
         let firstDialogueElement = await ƒS.Menu.getInput(firstDialogueElementAnswers, "class");
@@ -21,11 +21,11 @@ namespace myfirstnovel {
                 await ƒS.Speech.tell(characters.Narrator, "Dann versuche ich mal mein Glück mit dem Daumen.")
                 await ƒS.update(1);
                 ƒS.Speech.clear();
-                await ƒS.update(transition.clock.duration, transition.clock.alpha, transition.clock.edge)
+                await ƒS.update(transition.clock.duration, transition.wish.alpha, transition.clock.edge)
                 dataForSave.pickedanhalter = true;
                 break;
 
-            case firstDialogueElementAnswers.iSayNo:
+            case firstDialogueElementAnswers.iPickZug:
                 //continue writing on this path here
                 await ƒS.Speech.tell(characters.Narrator, "Naja....dann laufe ich eben zum Bahnhof");
                 await ƒS.update(1);

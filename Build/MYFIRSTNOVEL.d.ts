@@ -70,6 +70,11 @@ declare namespace myfirstnovel {
             alpha: string;
             edge: number;
         };
+        wish: {
+            duration: number;
+            alpha: string;
+            edge: number;
+        };
     };
     let items: {
         Ausweis: {
@@ -215,6 +220,8 @@ declare namespace myfirstnovel {
         state: {
             a: string;
         };
+        pickedtrain: boolean;
+        pickedanhalter: boolean;
     };
     function incrementSound(): void;
     function decrementSound(): void;

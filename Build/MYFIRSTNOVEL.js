@@ -3,13 +3,11 @@ var myfirstnovel;
 (function (myfirstnovel) {
     async function Flughafen01() {
         console.log("Flughafen01");
+        myfirstnovel.ƒS.Speech.set(myfirstnovel.characters.Narrator, "Dein Name:");
         myfirstnovel.dataForSave.Protagonist.name = await myfirstnovel.ƒS.Speech.getInput();
         console.log(myfirstnovel.dataForSave.Protagonist.name);
-        let signalDelay2 = myfirstnovel.ƒS.Progress.defineSignal([() => myfirstnovel.ƒS.Progress.delay(2)]);
-        // Text anzeigen
-        // ƒS.Text.addClass("cssklasse");
-        // await ƒS.Text.print("Text dein ich anzeigen lassen möchte.");
-        // ƒS.Text.close();
+        let signalDelay2 = myfirstnovel.ƒS.Progress.defineSignal([() => myfirstnovel.ƒS.Progress.delay(5)]);
+        //music
         myfirstnovel.ƒS.Speech.setTickerDelays(30, 2);
         await myfirstnovel.ƒS.Location.show(myfirstnovel.locations.black);
         // ƒS.Sound.fade(sound.backgroundTheme, 0.2, 0.1, true);
@@ -77,24 +75,26 @@ var myfirstnovel;
         await myfirstnovel.ƒS.update(1);
         await myfirstnovel.ƒS.Speech.tell(myfirstnovel.characters.Narrator, "Wow, das war ja wirklich ein kleiner Flughafen. Miiiitten im nirgendwo... Ohman....wo ist denn nur meine Uhr.. Ich muss sie wohl auf dem Weg verloren haben...und viel wichtiger, wie komme ich Nachhause?? Hm..........");
         let firstDialogueElementAnswers = {
-            iSayYes: "Ob mich die Leute hier wohl per Anhalter mit nehmen?",
-            iSayNo: "Hm.. oder soll ich lieber 2 Stunden bis zum Bahnhof laufen?",
+            iPickAnhalter: "Ob mich die Leute hier wohl per Anhalter mit nehmen?",
+            iPickZug: "Hm.. oder soll ich lieber 2 Stunden bis zum Bahnhof laufen?",
         };
         let firstDialogueElement = await myfirstnovel.ƒS.Menu.getInput(firstDialogueElementAnswers, "class");
         switch (firstDialogueElement) {
-            case firstDialogueElementAnswers.iSayYes:
+            case firstDialogueElementAnswers.iPickAnhalter:
                 //continue writing on this path here
                 await myfirstnovel.ƒS.Speech.tell(myfirstnovel.characters.Narrator, "Dann versuche ich mal mein Glück mit dem Daumen.");
                 await myfirstnovel.ƒS.update(1);
                 myfirstnovel.ƒS.Speech.clear();
-                await myfirstnovel.ƒS.update(myfirstnovel.transition.clock.duration, myfirstnovel.transition.clock.alpha, myfirstnovel.transition.clock.edge);
+                await myfirstnovel.ƒS.update(myfirstnovel.transition.clock.duration, myfirstnovel.transition.wish.alpha, myfirstnovel.transition.clock.edge);
+                myfirstnovel.dataForSave.pickedanhalter = true;
                 break;
-            case firstDialogueElementAnswers.iSayNo:
+            case firstDialogueElementAnswers.iPickZug:
                 //continue writing on this path here
                 await myfirstnovel.ƒS.Speech.tell(myfirstnovel.characters.Narrator, "Naja....dann laufe ich eben zum Bahnhof");
                 await myfirstnovel.ƒS.update(1);
                 myfirstnovel.ƒS.Speech.clear();
                 await myfirstnovel.ƒS.update(1);
+                myfirstnovel.dataForSave.pickedtrain = true;
                 break;
         }
         ;
@@ -144,7 +144,7 @@ var myfirstnovel;
                 await myfirstnovel.ƒS.Speech.tell(myfirstnovel.characters.Narrator, "Ich fahre bis kurz vor Konstanz! ....Was ein Zufall, dass du auch nach Konstanz musst, oder? Freut mich sehr, dass ich dich mitnehmen kann.");
                 await myfirstnovel.ƒS.update(1);
                 myfirstnovel.ƒS.Speech.clear();
-                await myfirstnovel.ƒS.update(myfirstnovel.transition.clock.duration, myfirstnovel.transition.clock.alpha, myfirstnovel.transition.clock.edge);
+                await myfirstnovel.ƒS.update(myfirstnovel.transition.wish.duration, myfirstnovel.transition.clock.alpha, myfirstnovel.transition.wish.edge);
                 break;
             case firstDialogueElementAnswers.iSayNo:
                 //continue writing on this path here
@@ -443,8 +443,13 @@ var myfirstnovel;
     myfirstnovel.transition = {
         clock: {
             duration: 1,
-            alpha: "",
-            edge: 1
+            alpha: "Images/Transitions/035.jpg",
+            edge: 1,
+        },
+        wish: {
+            duration: 1,
+            alpha: "Images/Transitions/005.jpg",
+            edge: 1,
         }
     };
     myfirstnovel.items = {
@@ -594,7 +599,9 @@ var myfirstnovel;
         ended: false,
         state: {
             a: ""
-        }
+        },
+        pickedtrain: false,
+        pickedanhalter: false,
     };
     let volume = 1.0;
     function incrementSound() {
@@ -663,31 +670,27 @@ var myfirstnovel;
             { scene: myfirstnovel.Flughafen01, name: "Flughafen01" },
             { scene: myfirstnovel.Flughafen02, name: "Flughafen02" },
             { scene: myfirstnovel.Flughafen03, name: "Flughafen03" },
-            { scene: myfirstnovel.Flughafen04, name: "Flughafen04" },
+            { id: "Flughafen04", scene: myfirstnovel.Flughafen04, name: "Flughafen04", next: "" },
             //next?
-            { scene: myfirstnovel.Flughafenzug, name: "Flughafenzug" },
-            { scene: myfirstnovel.Zug01, name: "Zug01" },
-            { scene: myfirstnovel.Zug02, name: "Zug02" },
-            { scene: myfirstnovel.Zug03, name: "Zug03" },
-            //negativ zug
+            { id: "Flughafenzug", scene: myfirstnovel.Flughafenzug, name: "Flughafenzug", next: "Zug01" },
+            { scene: myfirstnovel.Zug01, name: "Zug01", next: "Zug02" },
+            { scene: myfirstnovel.Zug02, name: "Zug02", next: "Zug03" },
+            { scene: myfirstnovel.Zug03, name: "Zug03", next: "Dorf01" },
             { scene: myfirstnovel.Dorf01, name: "Dorf01" },
             { scene: myfirstnovel.ADorf01, name: "ADorf01" },
             { scene: myfirstnovel.BDorf01, name: "BDorf01" },
             { scene: myfirstnovel.AHaus01, name: "AHaus1" },
-            //tod
             { scene: myfirstnovel.BZuhause01, name: "BZuhause01" },
             //next?
-            { scene: myfirstnovel.Flughafenanhalter, name: "Flughafenanhalter" },
-            { scene: myfirstnovel.Anhalter01, name: "Anhalter01" },
-            { scene: myfirstnovel.Anhalter02, name: "Anhalter02" },
-            { scene: myfirstnovel.Anhalter03, name: "Anhalter03" },
-            // anhalter
+            { id: "Flughafenanhalter", scene: myfirstnovel.Flughafenanhalter, name: "Flughafenanhalter", next: "Anhalter01" },
+            { scene: myfirstnovel.Anhalter01, name: "Anhalter01", next: "Anhalter02" },
+            { scene: myfirstnovel.Anhalter02, name: "Anhalter02", next: "Anhalter03" },
+            { scene: myfirstnovel.Anhalter03, name: "Anhalter03", next: "Wald01" },
             { scene: myfirstnovel.Wald01, name: "Wald01" },
             { scene: myfirstnovel.Dorf01, name: "Dorf01" },
             { scene: myfirstnovel.ADorf01, name: "ADorf01" },
             { scene: myfirstnovel.BDorf01, name: "BDorf01" },
             { scene: myfirstnovel.AHaus01, name: "AHaus1" },
-            //leben
             { scene: myfirstnovel.AZuhause01, name: "AZuhause01" },
             //{ scene: Zug, name: "Zug" },
             //{ scene: city, name: "City" }

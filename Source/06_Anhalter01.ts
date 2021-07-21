@@ -20,7 +20,7 @@ namespace myfirstnovel {
                 await ƒS.Speech.tell(characters.Narrator, "Ich fahre bis kurz vor Konstanz! ....Was ein Zufall, dass du auch nach Konstanz musst, oder? Freut mich sehr, dass ich dich mitnehmen kann.")
                 await ƒS.update(1);
                 ƒS.Speech.clear();
-                await ƒS.update(transition.clock.duration, transition.clock.alpha, transition.clock.edge)
+                await ƒS.update(transition.wish.duration, transition.clock.alpha, transition.wish.edge)
                 break;
             case firstDialogueElementAnswers.iSayNo:
                 //continue writing on this path here

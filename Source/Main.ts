@@ -8,8 +8,13 @@ namespace myfirstnovel {
   export let transition = {
     clock: {
       duration: 1,
-      alpha: "",
-      edge: 1
+      alpha: "Images/Transitions/035.jpg",
+      edge: 1,
+    },
+    wish: {
+      duration: 1,
+      alpha: "Images/Transitions/005.jpg",
+      edge: 1,
     }
   };
 
@@ -169,7 +174,7 @@ namespace myfirstnovel {
     },
     pickedtrain: false,
     pickedanhalter: false,
-    
+
   };
 
   let volume: number = 1.0;
@@ -247,38 +252,37 @@ namespace myfirstnovel {
       ƒS.Menu.create(inGameMenu, buttonFunc, "gameMenu");
 
     let scenes: ƒS.Scenes = [
-      { scene: Flughafen01, name: "Flughafen01", next: "Zug01" },
+      { scene: Flughafen01, name: "Flughafen01" },
       { scene: Flughafen02, name: "Flughafen02" },
       { scene: Flughafen03, name: "Flughafen03" },
-      { id: "Flughafen04", scene: Flughafen04, name: "Flughafen04", next: ""}, 
-      
-      //next?
-      { id: "Flughafenzug", scene: Flughafenzug, name: "Flughafenzug", next: ""}, 
-      { scene: Zug01, name: "Zug01" },
-      { scene: Zug02, name: "Zug02" },
-      { scene: Zug03, name: "Zug03" },
-
-      { scene: Dorf01, name: "Dorf01" }, 
-      { scene: ADorf01, name: "ADorf01" }, 
-      { scene: BDorf01, name: "BDorf01" }, 
-      { scene: AHaus01, name: "AHaus1" }, 
-
-      { scene: BZuhause01, name: "BZuhause01" }, 
+      { id: "Flughafen04", scene: Flughafen04, name: "Flughafen04", next: "" },
 
       //next?
-      { id: "Flughafenanhalter", scene: Flughafenanhalter, name: "Flughafenanhalter", next: ""}, 
-      { scene: Anhalter01, name: "Anhalter01" },
-      { scene: Anhalter02, name: "Anhalter02" },
-      { scene: Anhalter03, name: "Anhalter03" },
+      { id: "Flughafenzug", scene: Flughafenzug, name: "Flughafenzug", next: "Zug01" },
+      { scene: Zug01, name: "Zug01", next: "Zug02" },
+      { scene: Zug02, name: "Zug02", next: "Zug03" },
+      { scene: Zug03, name: "Zug03", next: "Dorf01" },
+
+      { scene: Dorf01, name: "Dorf01" },
+      { scene: ADorf01, name: "ADorf01" },
+      { scene: BDorf01, name: "BDorf01" },
+      { scene: AHaus01, name: "AHaus1" },
+      { scene: BZuhause01, name: "BZuhause01" },
+
+      //next?
+      { id: "Flughafenanhalter", scene: Flughafenanhalter, name: "Flughafenanhalter", next: "Anhalter01" },
+      { scene: Anhalter01, name: "Anhalter01", next: "Anhalter02" },
+      { scene: Anhalter02, name: "Anhalter02", next: "Anhalter03" },
+      { scene: Anhalter03, name: "Anhalter03", next: "Wald01" },
 
       { scene: Wald01, name: "Wald01" },
-      { scene: Dorf01, name: "Dorf01" }, 
-      { scene: ADorf01, name: "ADorf01" }, 
-      { scene: BDorf01, name: "BDorf01" }, 
-      { scene: AHaus01, name: "AHaus1" }, 
+      { scene: Dorf01, name: "Dorf01" },
+      { scene: ADorf01, name: "ADorf01" },
+      { scene: BDorf01, name: "BDorf01" },
+      { scene: AHaus01, name: "AHaus1" },
 
-      { scene: AZuhause01, name: "AZuhause01" }, 
-    
+      { scene: AZuhause01, name: "AZuhause01" },
+
 
       //{ scene: Zug, name: "Zug" },
       //{ scene: city, name: "City" }
