@@ -1,0 +1,73 @@
+{
+  "bundle": {
+    "commonSourceDirectory": "..",
+    "sourceFiles": [
+      "../Source/01_Flughafen01.ts",
+      "../Source/02_Flughafen02.ts",
+      "../Source/03_Flughafen03.ts",
+      "../Source/04_Flughafen04.ts",
+      "../Source/05_FlughafenAnhalter.ts",
+      "../Source/05_FlughafenZug.ts",
+      "../Source/06_Anhalter01.ts",
+      "../Source/06_Anhalter02.ts",
+      "../Source/06_Anhalter03.ts",
+      "../Source/07_Zug01.ts",
+      "../Source/07_Zug02.ts",
+      "../Source/07_Zug03.ts",
+      "../Source/08_Wald01.ts",
+      "../Source/09_Dorf01.ts",
+      "../Source/10_ADorf01.ts",
+      "../Source/10_BDorf01.ts",
+      "../Source/11_AHaus01.ts",
+      "../Source/12_AZuhause01.ts",
+      "../Source/13_BZuhause01.ts",
+      "../Source/21_City.ts",
+      "../Source/22_Alt.ts",
+      "../Source/Main.ts"
+    ],
+    "js": {
+      "sections": [
+        {
+          "pos": 0,
+          "end": 13,
+          "kind": "prologue",
+          "data": "use strict"
+        },
+        {
+          "pos": 15,
+          "end": 36635,
+          "kind": "text"
+        }
+      ],
+      "sources": {
+        "prologues": [
+          {
+            "file": 0,
+            "text": "",
+            "directives": [
+              {
+                "pos": -1,
+                "end": -1,
+                "expression": {
+                  "pos": -1,
+                  "end": -1,
+                  "text": "use strict"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "dts": {
+      "sections": [
+        {
+          "pos": 0,
+          "end": 5301,
+          "kind": "text"
+        }
+      ]
+    }
+  },
+  "version": "4.2.4"
+}
