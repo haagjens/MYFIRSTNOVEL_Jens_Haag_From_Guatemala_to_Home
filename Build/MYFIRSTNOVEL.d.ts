@@ -53,13 +53,19 @@ declare namespace myfirstnovel {
     function AZuhause01(): ƒS.SceneReturn;
 }
 declare namespace myfirstnovel {
-    function BZuhause01(): ƒS.SceneReturn;
+    function ZDorf01(): ƒS.SceneReturn;
 }
 declare namespace myfirstnovel {
-    function city(): ƒS.SceneReturn;
+    function ZADorf01(): ƒS.SceneReturn;
 }
 declare namespace myfirstnovel {
-    function Zug(): ƒS.SceneReturn;
+    function ZBDorf01(): ƒS.SceneReturn;
+}
+declare namespace myfirstnovel {
+    function ZAHaus01(): ƒS.SceneReturn;
+}
+declare namespace myfirstnovel {
+    function ZBZuhause01(): ƒS.SceneReturn;
 }
 declare namespace myfirstnovel {
     export import ƒ = FudgeCore;
@@ -192,6 +198,7 @@ declare namespace myfirstnovel {
             origin: ƒ.ORIGIN2D;
             pose: {
                 normal: string;
+                ohne: string;
             };
         };
         Manalt: {
@@ -220,9 +227,10 @@ declare namespace myfirstnovel {
         state: {
             a: string;
         };
-        pickedtrain: boolean;
-        pickedanhalter: boolean;
+        iPickZug: boolean;
+        iPickAnhalter: boolean;
     };
     function incrementSound(): void;
     function decrementSound(): void;
+    let scenecount: string;
 }

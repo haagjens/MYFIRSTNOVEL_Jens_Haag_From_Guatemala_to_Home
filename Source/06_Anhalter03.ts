@@ -1,6 +1,6 @@
 namespace myfirstnovel {
     export async function Anhalter03(): ƒS.SceneReturn {
-        console.log("Anhaltergoodbye");
+        console.log("Anhalter03");
 
 
         await ƒS.Location.show(locations.goodbyedriver);
@@ -14,7 +14,7 @@ namespace myfirstnovel {
       await ƒS.Inventory.open();
 
       
-      dataForSave.state.a +- 53;
+      return "Wald01"
     }
 }
 

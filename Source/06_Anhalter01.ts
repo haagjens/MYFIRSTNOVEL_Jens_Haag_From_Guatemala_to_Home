@@ -1,6 +1,6 @@
 namespace myfirstnovel {
     export async function Anhalter01(): ƒS.SceneReturn {
-        console.log("Anhalterreden");
+        console.log("Anhalter01");
 
 
         await ƒS.Location.show(locations.goodbyedriver);
@@ -21,13 +21,16 @@ namespace myfirstnovel {
                 await ƒS.update(1);
                 ƒS.Speech.clear();
                 await ƒS.update(transition.wish.duration, transition.clock.alpha, transition.wish.edge)
+                return "Anhalter02"
                 break;
+                
             case firstDialogueElementAnswers.iSayNo:
                 //continue writing on this path here
                 await ƒS.update(1);
                 await ƒS.Speech.tell(characters.Narrator, "Ich fahre bis kurz vor Konstanz! ....Was ein Zufall das du auch nach Konstanz musst, oder? Freut mich sehr, dass ich dich mitnehmen kann.");
                 ƒS.Speech.clear();
                 await ƒS.update(1);
+                return "Anhalter02"
                 break;
         };
     }

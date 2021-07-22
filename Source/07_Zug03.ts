@@ -5,5 +5,6 @@ namespace myfirstnovel {
         await ƒS.Location.show(locations.busarrive);
         // sound bus
         await ƒS.update(1);
+        return "ZDorf01"
     }
 }

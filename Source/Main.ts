@@ -18,6 +18,7 @@ namespace myfirstnovel {
     }
   };
 
+  // items
   export let items = {
     Ausweis: {
       name: "Ausweis",
@@ -45,6 +46,7 @@ namespace myfirstnovel {
     click: ""
   };
 
+  //locations
   export let locations = {
     black: {
       name: "black",
@@ -141,14 +143,15 @@ namespace myfirstnovel {
       name: "Pilot",
       origin: ƒS.ORIGIN.BOTTOMCENTER,
       pose: {
-        normal: "Images/Characters/Omasmile.png" // austausch
+        normal: "Images/Characters/Pilot.png",
+        ohne: "Images/Characters/PilotO.png"
       }
     },
     Manalt: {
       name: "Netter Herr",
       origin: ƒS.ORIGIN.BOTTOMCENTER,
       pose: {
-        normal: "Images/Characters/Omasmile.png" // austausch
+        normal: "Images/Characters/Opa.png" // austausch
       }
     },
     Teen: {
@@ -163,6 +166,7 @@ namespace myfirstnovel {
 
   };
 
+  //branching plots
   export let dataForSave = {
     score: 0,
     Protagonist: {
@@ -172,8 +176,8 @@ namespace myfirstnovel {
     state: {
       a: ""
     },
-    pickedtrain: false,
-    pickedanhalter: false,
+    iPickZug: false,
+    iPickAnhalter: false
 
   };
 
@@ -245,44 +249,49 @@ namespace myfirstnovel {
 
   };
 
+
+  export let scenecount = "";
+
+
   window.addEventListener("load", start);
   function start(_event: Event): void {
     // MENU
     gameMenu =
       ƒS.Menu.create(inGameMenu, buttonFunc, "gameMenu");
 
+    
     let scenes: ƒS.Scenes = [
-      { scene: Flughafen01, name: "Flughafen01" },
-      { scene: Flughafen02, name: "Flughafen02" },
-      { scene: Flughafen03, name: "Flughafen03" },
+      //{ id: "Flughafen01", scene: Flughafen01, name: "Flughafen01" },
+      { id: "Flughafen02", scene: Flughafen02, name: "Flughafen02" },
+      { id: "Flughafen03", scene: Flughafen03, name: "Flughafen03" },
       { id: "Flughafen04", scene: Flughafen04, name: "Flughafen04", next: "" },
 
-      //next?
-      { id: "Flughafenzug", scene: Flughafenzug, name: "Flughafenzug", next: "Zug01" },
-      { scene: Zug01, name: "Zug01", next: "Zug02" },
-      { scene: Zug02, name: "Zug02", next: "Zug03" },
-      { scene: Zug03, name: "Zug03", next: "Dorf01" },
-
-      { scene: Dorf01, name: "Dorf01" },
-      { scene: ADorf01, name: "ADorf01" },
-      { scene: BDorf01, name: "BDorf01" },
-      { scene: AHaus01, name: "AHaus1" },
-      { scene: BZuhause01, name: "BZuhause01" },
-
-      //next?
+      //Anhalter
       { id: "Flughafenanhalter", scene: Flughafenanhalter, name: "Flughafenanhalter", next: "Anhalter01" },
-      { scene: Anhalter01, name: "Anhalter01", next: "Anhalter02" },
-      { scene: Anhalter02, name: "Anhalter02", next: "Anhalter03" },
-      { scene: Anhalter03, name: "Anhalter03", next: "Wald01" },
+      { id: "Anhalter01", scene: Anhalter01, name: "Anhalter01", next: "Anhalter02" },
+      { id: "Anhalter02", scene: Anhalter02, name: "Anhalter02", next: "Anhalter03" },
+      { id: "Anhalter03", scene: Anhalter03, name: "Anhalter03", next: "Wald01" },
 
-      { scene: Wald01, name: "Wald01" },
-      { scene: Dorf01, name: "Dorf01" },
-      { scene: ADorf01, name: "ADorf01" },
-      { scene: BDorf01, name: "BDorf01" },
-      { scene: AHaus01, name: "AHaus1" },
+      // A 
+      { id: "Wald01", scene: Wald01, name: "Wald01" },
+      { id: "Dorf01", scene: Dorf01, name: "Dorf01" },
+      { id: "ADorf01", scene: ADorf01, name: "ADorf01" },
+      { id: "BDorf01", scene: BDorf01, name: "BDorf01" },
+      { id: "AHaus1", scene: AHaus01, name: "AHaus1" },
+      { id: "AZuhause01", scene: AZuhause01, name: "AZuhause01" },
 
-      { scene: AZuhause01, name: "AZuhause01" },
+      //Zug
+      { id: "Flughafenzug", scene: Flughafenzug, name: "Flughafenzug", next: "Zug01" },
+      { id: "Zug01", scene: Zug01, name: "Zug01", next: "Zug02" },
+      { id: "Zug02", scene: Zug02, name: "Zug02", next: "Zug03" },
+      { id: "Zug03", scene: Zug03, name: "Zug03", next: "Dorf01" },
 
+      //Z 
+      { id: "ZDorf01", scene: ZDorf01, name: "ZDorf01" },
+      { id: "ZADorf01", scene: ZADorf01, name: "ZADorf01" },
+      { id: "ZBDorf01", scene: ZBDorf01, name: "ZBDorf01" },
+      { id: "ZAHaus1", scene: ZAHaus01, name: "ZAHaus1" },
+      { id: "ZBZuhause01", scene: ZBZuhause01, name: "ZBZuhause01" },
 
       //{ scene: Zug, name: "Zug" },
       //{ scene: city, name: "City" }

@@ -17,12 +17,14 @@
       "../Source/08_Wald01.ts",
       "../Source/09_Dorf01.ts",
       "../Source/10_ADorf01.ts",
-      "../Source/10_BDorf01.ts",
-      "../Source/11_AHaus01.ts",
-      "../Source/12_AZuhause01.ts",
-      "../Source/13_BZuhause01.ts",
-      "../Source/21_City.ts",
-      "../Source/22_Alt.ts",
+      "../Source/11_BDorf01.ts",
+      "../Source/12_AHaus01.ts",
+      "../Source/13_AZuhause01.ts",
+      "../Source/14_ZDorf01.ts",
+      "../Source/15_ZADorf01.ts",
+      "../Source/16_ZBDorf01.ts",
+      "../Source/17_ZAHaus01.ts",
+      "../Source/20_ZBZuhause01.ts",
       "../Source/Main.ts"
     ],
     "js": {
@@ -35,7 +37,7 @@
         },
         {
           "pos": 15,
-          "end": 37040,
+          "end": 41574,
           "kind": "text"
         }
       ],
@@ -63,7 +65,7 @@
       "sections": [
         {
           "pos": 0,
-          "end": 5481,
+          "end": 5704,
           "kind": "text"
         }
       ]

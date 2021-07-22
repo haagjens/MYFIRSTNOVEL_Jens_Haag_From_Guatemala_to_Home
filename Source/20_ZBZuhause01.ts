@@ -1,6 +1,6 @@
 namespace myfirstnovel {
-    export async function BZuhause01(): ƒS.SceneReturn {
-        console.log("BZuhause01");
+    export async function ZBZuhause01(): ƒS.SceneReturn {
+        console.log("ZBZuhause01");
 
 
         await ƒS.Location.show(locations.zuhause);

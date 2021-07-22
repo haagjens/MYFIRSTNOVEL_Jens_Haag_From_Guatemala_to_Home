@@ -6,5 +6,6 @@ namespace myfirstnovel {
         // länger hier bleiben
         // sound zug
         await ƒS.update(1);
+        return "Zug02"
     }
 }
