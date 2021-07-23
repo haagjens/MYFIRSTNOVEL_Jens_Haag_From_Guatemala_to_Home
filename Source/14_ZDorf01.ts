@@ -6,7 +6,7 @@ namespace myfirstnovel {
         await ƒS.Location.show(locations.villageask);
         await ƒS.update(1);
         await ƒS.Speech.tell(characters.Narrator, "Wow, erstaunlich wie schnell ich nun nach Konstanz gekommen bin....das kann doch nur ein Zufall aufgrund einer Enscheidung gewesen sein..." );
-        ƒS.Sound.fade(sound.backgroundTheme, 0.2, 0.1, true); // kirchenglocken im dorf
+        ƒS.Sound.fade(sound.kirchenglocken, 0.2, 0.1, true); // kirchenglocken im dorf
         await ƒS.update(1);
         await ƒS.Speech.tell(characters.Narrator, "Jetzt muss ich nur noch das Haus meiner Mutter finden.... Ich könnte...." );
 

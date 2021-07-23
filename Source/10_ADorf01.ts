@@ -14,7 +14,10 @@ namespace myfirstnovel {
         await ƒS.update(1);
 
         ƒS.Character.hide(characters.Manalt);
-        await ƒS.Speech.tell(characters.Narrator, "Wow was ein netter Mann.. der wusste wohl über das Geschehen im ganzen Dorf bescheid... Naja, ich mach mich auf den Weg ins Neubaugebiet und suche dort." );
+        await ƒS.update(1);
+        await ƒS.Speech.tell(characters.Narrator, "Wow, was ein netter Mann.. der wusste wohl über das Geschehen im ganzen Dorf bescheid... Naja, ich mach mich auf den Weg ins Neubaugebiet und suche dort." );
+        await signalDelay2();
+        await ƒS.update(1);
         return "AHaus01"
         
     }

@@ -100,8 +100,13 @@ declare namespace myfirstnovel {
         };
     };
     let sound: {
-        backgroundTheme: string;
-        click: string;
+        mainTheme: string;
+        flugplatz: string;
+        frachtraum: string;
+        imauto: string;
+        kirchenglocken: string;
+        singendevoegel: string;
+        train: string;
     };
     let locations: {
         black: {

@@ -41,9 +41,14 @@ namespace myfirstnovel {
   //define sound
   export let sound = {
     //Musik
-    backgroundTheme: "Sound/Music/vn_maintheme_loop.wav",
+    mainTheme: "Sound/Music/vn-maintheme-findingwayhome.wav",
     //Sound
-    click: ""
+    flugplatz: "Sound/Backgrounds/flugplatz.wav",
+    frachtraum: "Sound/Backgrounds/frachtraum.wav",
+    imauto: "Sound/Backgrounds/imauto.wav",
+    kirchenglocken: "Sound/Backgrounds/kirchenglocken.wav",
+    singendevoegel: "Sound/Backgrounds/singendevoegel.wav",
+    train: "Sound/Backgrounds/train.wav"
   };
 
   //locations
@@ -151,7 +156,7 @@ namespace myfirstnovel {
       name: "Netter Herr",
       origin: ƒS.ORIGIN.BOTTOMCENTER,
       pose: {
-        normal: "Images/Characters/Opa.png" // austausch
+        normal: "Images/Characters/Opa.png" 
       }
     },
     Teen: {
@@ -261,7 +266,7 @@ namespace myfirstnovel {
 
     
     let scenes: ƒS.Scenes = [
-      //{ id: "Flughafen01", scene: Flughafen01, name: "Flughafen01" },
+      { id: "Flughafen01", scene: Flughafen01, name: "Flughafen01" },
       { id: "Flughafen02", scene: Flughafen02, name: "Flughafen02" },
       { id: "Flughafen03", scene: Flughafen03, name: "Flughafen03" },
       { id: "Flughafen04", scene: Flughafen04, name: "Flughafen04", next: "" },
@@ -277,7 +282,7 @@ namespace myfirstnovel {
       { id: "Dorf01", scene: Dorf01, name: "Dorf01" },
       { id: "ADorf01", scene: ADorf01, name: "ADorf01" },
       { id: "BDorf01", scene: BDorf01, name: "BDorf01" },
-      { id: "AHaus1", scene: AHaus01, name: "AHaus1" },
+      { id: "AHaus01", scene: AHaus01, name: "AHaus01" },
       { id: "AZuhause01", scene: AZuhause01, name: "AZuhause01" },
 
       //Zug
@@ -290,7 +295,7 @@ namespace myfirstnovel {
       { id: "ZDorf01", scene: ZDorf01, name: "ZDorf01" },
       { id: "ZADorf01", scene: ZADorf01, name: "ZADorf01" },
       { id: "ZBDorf01", scene: ZBDorf01, name: "ZBDorf01" },
-      { id: "ZAHaus1", scene: ZAHaus01, name: "ZAHaus1" },
+      { id: "ZAHaus01", scene: ZAHaus01, name: "ZAHaus01" },
       { id: "ZBZuhause01", scene: ZBZuhause01, name: "ZBZuhause01" },
 
       //{ scene: Zug, name: "Zug" },

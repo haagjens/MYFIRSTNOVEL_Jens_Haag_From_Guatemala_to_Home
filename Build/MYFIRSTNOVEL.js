@@ -10,7 +10,7 @@ var myfirstnovel;
         //music !!!!!
         myfirstnovel.ƒS.Speech.setTickerDelays(30, 2);
         await myfirstnovel.ƒS.Location.show(myfirstnovel.locations.black);
-        // ƒS.Sound.fade(sound.backgroundTheme, 0.2, 0.1, true);
+        myfirstnovel.ƒS.Sound.fade(myfirstnovel.sound.mainTheme, 0.2, 0.1, true);
         await myfirstnovel.ƒS.update(1);
         myfirstnovel.ƒS.Speech.set(myfirstnovel.characters.Narrator, "November 1968: " + myfirstnovel.dataForSave.Protagonist.name + " fliegt von einem 8 Jährigen Auslandsaufenthalt in Guatemala nach Deutschland zurück. Nachdem er eine Nachricht von seinem Bruder erhalten hatte, dass seine Mutter schwer krank auf dem Sterbebett liegt und Sie ihm noch eine letzte persönliche Nachrichten überbringen möchte, versucht Michael so schnell wie nur möglich aus Ciudad de Guatemala nach Deutschland zu kommen.");
         await signalDelay2();
@@ -18,6 +18,7 @@ var myfirstnovel;
         myfirstnovel.ƒS.Speech.clear(); // waiting for click?
         await myfirstnovel.ƒS.Speech.tell(myfirstnovel.characters.Narrator, " " + myfirstnovel.dataForSave.Protagonist.name + "s Bruder und seine Mutter werden sich sehr wahrscheinlich in seiner alten Heimat aufhalten. Jedoch muss er zuerst einmal den Weg dorthin finden, denn es ist Jahre her als er zuletzt in Deutschland war.");
         await signalDelay2();
+        myfirstnovel.ƒS.Sound.fade(myfirstnovel.sound.mainTheme, 0, 3, true);
         await myfirstnovel.ƒS.update(1);
         myfirstnovel.ƒS.Speech.clear();
         return "Flughafen02";
@@ -32,9 +33,11 @@ var myfirstnovel;
         let signalDelay2 = myfirstnovel.ƒS.Progress.defineSignal([() => myfirstnovel.ƒS.Progress.delay(3)]);
         myfirstnovel.ƒS.Speech.setTickerDelays(30, 2);
         await myfirstnovel.ƒS.Location.show(myfirstnovel.locations.Flughafen12);
+        myfirstnovel.ƒS.Sound.fade(myfirstnovel.sound.frachtraum, 0.2, 0.1, true);
         await myfirstnovel.ƒS.update(1);
         await myfirstnovel.ƒS.Speech.tell(myfirstnovel.characters.Narrator, "Ein alter Freund, den er von der Arbeit in Guatemala kannte, konnte " + myfirstnovel.dataForSave.Protagonist.name + " einen Last-Minute Flug mit einem Frachtflugzeug, nach Süddeutschland arrangieren.");
         await signalDelay2();
+        myfirstnovel.ƒS.Sound.fade(myfirstnovel.sound.frachtraum, 0, 3, true);
         await myfirstnovel.ƒS.update(1);
         myfirstnovel.ƒS.Speech.clear();
         return "Flughafen03";
@@ -48,6 +51,7 @@ var myfirstnovel;
         let signalDelay2 = myfirstnovel.ƒS.Progress.defineSignal([() => myfirstnovel.ƒS.Progress.delay(2)]);
         myfirstnovel.ƒS.Speech.setTickerDelays(30, 2);
         await myfirstnovel.ƒS.Location.show(myfirstnovel.locations.Flughafen13);
+        myfirstnovel.ƒS.Sound.fade(myfirstnovel.sound.flugplatz, 0.1, 0.3, true);
         await myfirstnovel.ƒS.update(1);
         await myfirstnovel.ƒS.Character.show(myfirstnovel.characters.Pilot, myfirstnovel.characters.Pilot.pose.ohne, myfirstnovel.ƒS.positions.bottomcenter);
         await myfirstnovel.ƒS.update(1);
@@ -70,6 +74,7 @@ var myfirstnovel;
         await myfirstnovel.ƒS.update(1);
         myfirstnovel.ƒS.Speech.clear();
         myfirstnovel.ƒS.Character.hide(myfirstnovel.characters.Pilot);
+        myfirstnovel.ƒS.Sound.fade(myfirstnovel.sound.flugplatz, 0, 3, true);
         await myfirstnovel.ƒS.update(1);
         await myfirstnovel.ƒS.Speech.tell(myfirstnovel.characters.Narrator, "Karte von Pilot erhalten und Rucksack geöffnet");
         myfirstnovel.ƒS.Inventory.add(myfirstnovel.items.Ausweis);
@@ -84,9 +89,10 @@ var myfirstnovel;
 (function (myfirstnovel) {
     async function Flughafen04() {
         console.log("Flughafen04");
-        let signalDelay2 = myfirstnovel.ƒS.Progress.defineSignal([() => myfirstnovel.ƒS.Progress.delay(5)]);
+        let signalDelay2 = myfirstnovel.ƒS.Progress.defineSignal([() => myfirstnovel.ƒS.Progress.delay(2)]);
         myfirstnovel.ƒS.Speech.setTickerDelays(30, 2);
         await myfirstnovel.ƒS.Location.show(myfirstnovel.locations.verlassenestrasse);
+        myfirstnovel.ƒS.Sound.fade(myfirstnovel.sound.flugplatz, 0.2, 0.1, true);
         await myfirstnovel.ƒS.update(1);
         await myfirstnovel.ƒS.Speech.tell(myfirstnovel.characters.Narrator, "Wow, das war ja wirklich ein kleiner Flughafen. Miiiitten im nirgendwo... Ohman....wo ist denn nur meine Uhr.. Ich muss sie wohl auf dem Weg verloren haben...und viel wichtiger, wie komme ich Nachhause?? Hm..........");
         let firstDialogueElementAnswers = {
@@ -94,20 +100,15 @@ var myfirstnovel;
             iPickZug: "Hm.. oder soll ich lieber 2 Stunden bis zum Bahnhof laufen?",
         };
         let firstDialogueElement = await myfirstnovel.ƒS.Menu.getInput(firstDialogueElementAnswers, "class");
-        if (firstDialogueElementAnswers.iPickAnhalter) {
-            return myfirstnovel.Flughafenanhalter();
-        }
-        if (firstDialogueElementAnswers.iPickAnhalter) {
-            return myfirstnovel.Flughafenzug();
-        }
         switch (firstDialogueElement) {
             case firstDialogueElementAnswers.iPickAnhalter:
                 //continue writing on this path here
+                await myfirstnovel.ƒS.update(1);
                 await myfirstnovel.ƒS.Speech.tell(myfirstnovel.characters.Narrator, "Dann versuche ich mal mein Glück mit dem Daumen.");
                 await signalDelay2();
+                myfirstnovel.ƒS.Sound.fade(myfirstnovel.sound.flugplatz, 0, 3, true);
                 await myfirstnovel.ƒS.update(1);
                 myfirstnovel.ƒS.Speech.clear();
-                await myfirstnovel.ƒS.update(myfirstnovel.transition.clock.duration, myfirstnovel.transition.wish.alpha, myfirstnovel.transition.clock.edge);
                 myfirstnovel.dataForSave.iPickAnhalter = true;
                 return "Flughafenanhalter";
                 break;
@@ -115,6 +116,7 @@ var myfirstnovel;
                 //continue writing on this path here
                 await myfirstnovel.ƒS.Speech.tell(myfirstnovel.characters.Narrator, "Naja....dann laufe ich eben zum Bahnhof");
                 await signalDelay2();
+                myfirstnovel.ƒS.Sound.fade(myfirstnovel.sound.flugplatz, 0, 3, true);
                 await myfirstnovel.ƒS.update(1);
                 myfirstnovel.ƒS.Speech.clear();
                 await myfirstnovel.ƒS.update(1);
@@ -137,6 +139,7 @@ var myfirstnovel;
         await myfirstnovel.ƒS.update(1);
         await myfirstnovel.ƒS.Speech.tell(myfirstnovel.characters.Narrator, "3 Stunden später hält ein Auto mit einem netten Fahrer.");
         await signalDelay2();
+        myfirstnovel.ƒS.Sound.fade(myfirstnovel.sound.flugplatz, 0, 3, true);
         await myfirstnovel.ƒS.update(1);
         myfirstnovel.ƒS.Speech.clear();
         return "Anhalter01";
@@ -149,11 +152,14 @@ var myfirstnovel;
         console.log("Flughafenzug");
         let signalDelay2 = myfirstnovel.ƒS.Progress.defineSignal([() => myfirstnovel.ƒS.Progress.delay(5)]);
         await myfirstnovel.ƒS.Location.show(myfirstnovel.locations.train);
+        await myfirstnovel.ƒS.update(1);
         await signalDelay2();
         await myfirstnovel.ƒS.update(1);
         await myfirstnovel.ƒS.Speech.tell(myfirstnovel.characters.Narrator, "Okay was sagt denn der Plan hier am Bahnsteig......es fahren genau 2 Züge von hier aus Richtung Singen... einer davon ist der hier??? Und er fährt in 5 Minuten los?? WOW, was ein Glück.... dann mal schnell rein hier.");
+        myfirstnovel.ƒS.Sound.fade(myfirstnovel.sound.flugplatz, 0, 3, true);
         await myfirstnovel.ƒS.update(1);
         myfirstnovel.ƒS.Speech.clear();
+        return "Zug01";
     }
     myfirstnovel.Flughafenzug = Flughafenzug;
 })(myfirstnovel || (myfirstnovel = {}));
@@ -197,7 +203,9 @@ var myfirstnovel;
         console.log("Anhalter02");
         let signalDelay2 = myfirstnovel.ƒS.Progress.defineSignal([() => myfirstnovel.ƒS.Progress.delay(2)]);
         await myfirstnovel.ƒS.Location.show(myfirstnovel.locations.black);
+        myfirstnovel.ƒS.Sound.fade(myfirstnovel.sound.imauto, 0.2, 0.1, true);
         await myfirstnovel.ƒS.update(1);
+        await myfirstnovel.ƒS.update(myfirstnovel.transition.wish.duration, myfirstnovel.transition.clock.alpha, myfirstnovel.transition.wish.edge);
         await signalDelay2();
         await signalDelay2();
         await signalDelay2();
@@ -205,7 +213,7 @@ var myfirstnovel;
         await signalDelay2();
         await signalDelay2();
         await myfirstnovel.ƒS.update(1);
-        myfirstnovel.ƒS.Sound.fade(myfirstnovel.sound.backgroundTheme, 0.2, 0.1, true); //autofahrgeräusche + mumble
+        myfirstnovel.ƒS.Sound.fade(myfirstnovel.sound.imauto, 0, 3, true); //autofahrgeräusche + mumble
         return "Anhalter03";
     }
     myfirstnovel.Anhalter02 = Anhalter02;
@@ -217,11 +225,16 @@ var myfirstnovel;
         await myfirstnovel.ƒS.Location.show(myfirstnovel.locations.goodbyedriver);
         await myfirstnovel.ƒS.update(1);
         await myfirstnovel.ƒS.Speech.tell(myfirstnovel.characters.Narrator, "Wirklich keine Sorge. Das habe ich gerne gemacht. Und der Zufall wollte eben das wir in die gleiche Richtung fahren....... Und hey ganz wichtig! Hier: die wolltest du mitnehmen! Und ich glaube du musst von hier aus nur noch durch diesen Wald und schon bist du vor Konstanz.");
+        await myfirstnovel.ƒS.update(1);
         await myfirstnovel.ƒS.Speech.tell(myfirstnovel.characters.Narrator, "Karte von Fahrer erhalten und Rucksack geöffnet");
+        await myfirstnovel.ƒS.update(1);
+        myfirstnovel.ƒS.Speech.clear();
+        await myfirstnovel.ƒS.update(1);
         myfirstnovel.ƒS.Inventory.add(myfirstnovel.items.Ausweis);
         myfirstnovel.ƒS.Inventory.add(myfirstnovel.items.Kartebw);
         myfirstnovel.ƒS.Inventory.add(myfirstnovel.items.Kartebodensee);
         await myfirstnovel.ƒS.Inventory.open();
+        await myfirstnovel.ƒS.update(1);
         return "Wald01";
     }
     myfirstnovel.Anhalter03 = Anhalter03;
@@ -230,9 +243,18 @@ var myfirstnovel;
 (function (myfirstnovel) {
     async function Zug01() {
         console.log("Zug01");
+        let signalDelay2 = myfirstnovel.ƒS.Progress.defineSignal([() => myfirstnovel.ƒS.Progress.delay(2)]);
         await myfirstnovel.ƒS.Location.show(myfirstnovel.locations.zug);
-        // länger hier bleiben
-        // sound zug
+        myfirstnovel.ƒS.Sound.fade(myfirstnovel.sound.train, 0.2, 0.1, true);
+        await myfirstnovel.ƒS.update(1);
+        await signalDelay2();
+        await signalDelay2();
+        await signalDelay2();
+        await myfirstnovel.ƒS.Speech.tell(myfirstnovel.characters.Narrator, "Die Zeit vergeht sehr langsam............");
+        myfirstnovel.ƒS.Sound.fade(myfirstnovel.sound.train, 0, 3, true);
+        await myfirstnovel.ƒS.update(1);
+        await signalDelay2();
+        await signalDelay2();
         await myfirstnovel.ƒS.update(1);
         return "Zug02";
     }
@@ -254,22 +276,30 @@ var myfirstnovel;
             case firstDialogueElementAnswers.iSayYes:
                 //continue writing on this path here
                 await myfirstnovel.ƒS.Character.show(myfirstnovel.characters.Teen, myfirstnovel.characters.Teen.pose.sad, myfirstnovel.ƒS.positions.bottomleft);
+                await myfirstnovel.ƒS.update(1);
                 await myfirstnovel.ƒS.Speech.tell(myfirstnovel.characters.Teen, ".....bitte?! Sie wagen es mich anzusprechen? Ich möchte nichts mit diesem dreckigen Abschaum zu tun haben. Bitte halten Sie Abstand und hören Sie auf so zu gaffen.");
                 await myfirstnovel.ƒS.update(1);
                 myfirstnovel.ƒS.Speech.clear();
                 await myfirstnovel.ƒS.update(1);
                 await myfirstnovel.ƒS.Speech.tell(myfirstnovel.characters.Narrator, "Ach herje... diese Jugend von heute...seeehr eingebildet.. das verstehe ich nicht.... naja.... aber hey was ist denn das für ein Plan?.........Ahhh ein Stadtplan! Okay.. Wir sind hier... und nicht weit von hier ist diese Bushaltestelle. Von dort aus komme ich sicher nach Konstanz! Dann mach ich mich mal auf den Weg.");
+                myfirstnovel.ƒS.Speech.clear();
+                myfirstnovel.ƒS.Character.hide(myfirstnovel.characters.Teen);
                 await myfirstnovel.ƒS.update(myfirstnovel.transition.clock.duration, myfirstnovel.transition.clock.alpha, myfirstnovel.transition.clock.edge);
+                await myfirstnovel.ƒS.update(1);
                 return "Zug03";
                 break;
             case firstDialogueElementAnswers.iSayNo:
                 //continue writing on this path here
                 await myfirstnovel.ƒS.update(1);
                 await myfirstnovel.ƒS.Character.show(myfirstnovel.characters.Oma, myfirstnovel.characters.Oma.pose.normal, myfirstnovel.ƒS.positions.bottomleft);
+                await myfirstnovel.ƒS.update(1);
                 await myfirstnovel.ƒS.Speech.tell(myfirstnovel.characters.Oma, "Ohh, junger Mann, da sind sie bei mir richtig. Ich arbeitete einst auf dem Rathaus und kenne die Fahrpläne in und auswendig! Haha. Dort oben ist eine Haltestelle, von der ein Bus nach Konstanz fährt.");
                 myfirstnovel.ƒS.Speech.clear();
                 await myfirstnovel.ƒS.update(1);
                 await myfirstnovel.ƒS.Speech.tell(myfirstnovel.characters.Narrator, "Ohh, vielen Dank nette Frau, ich wünsche Ihnen noch einen schönen Tag. Ich mache mich nun direkt auf dem Weg zur Bushaltestelle.");
+                myfirstnovel.ƒS.Speech.clear();
+                myfirstnovel.ƒS.Character.hide(myfirstnovel.characters.Oma);
+                await myfirstnovel.ƒS.update(1);
                 return "Zug03";
                 break;
         }
@@ -281,8 +311,15 @@ var myfirstnovel;
 (function (myfirstnovel) {
     async function Zug03() {
         console.log("Zug03");
+        let signalDelay2 = myfirstnovel.ƒS.Progress.defineSignal([() => myfirstnovel.ƒS.Progress.delay(2)]);
         await myfirstnovel.ƒS.Location.show(myfirstnovel.locations.busarrive);
-        // sound bus
+        await myfirstnovel.ƒS.update(1);
+        await signalDelay2();
+        await signalDelay2();
+        await signalDelay2();
+        await myfirstnovel.ƒS.Speech.tell(myfirstnovel.characters.Narrator, "Ich nehme diesen Bus nach Konstanz............");
+        await signalDelay2();
+        await signalDelay2();
         await myfirstnovel.ƒS.update(1);
         return "ZDorf01";
     }
@@ -294,8 +331,8 @@ var myfirstnovel;
         console.log("Wald01");
         let signalDelay2 = myfirstnovel.ƒS.Progress.defineSignal([() => myfirstnovel.ƒS.Progress.delay(2)]);
         await myfirstnovel.ƒS.Location.show(myfirstnovel.locations.waldweg);
-        await myfirstnovel.ƒS.update(1);
-        myfirstnovel.ƒS.Sound.fade(myfirstnovel.sound.backgroundTheme, 0.2, 0.1, true); //vogelzwitschern + schritte
+        await myfirstnovel.ƒS.update(myfirstnovel.transition.clock.duration, myfirstnovel.transition.wish.alpha, myfirstnovel.transition.clock.edge);
+        myfirstnovel.ƒS.Sound.fade(myfirstnovel.sound.singendevoegel, 0.2, 0.1, true); //vogelzwitschern + schritte
         await signalDelay2();
         await signalDelay2();
         await signalDelay2();
@@ -307,10 +344,13 @@ var myfirstnovel;
 (function (myfirstnovel) {
     async function Dorf01() {
         console.log("Dorf01");
+        let signalDelay2 = myfirstnovel.ƒS.Progress.defineSignal([() => myfirstnovel.ƒS.Progress.delay(2)]);
         await myfirstnovel.ƒS.Location.show(myfirstnovel.locations.villageask);
         await myfirstnovel.ƒS.update(1);
         await myfirstnovel.ƒS.Speech.tell(myfirstnovel.characters.Narrator, "Wow, erstaunlich wie schnell ich nun nach Konstanz gekommen bin....das kann doch nur ein Zufall aufgrund einer Enscheidung gewesen sein...");
-        myfirstnovel.ƒS.Sound.fade(myfirstnovel.sound.backgroundTheme, 0.2, 0.1, true); // kirchenglocken im dorf
+        myfirstnovel.ƒS.Sound.fade(myfirstnovel.sound.singendevoegel, 0, 3, true); //vogelzwitschern + schritte
+        myfirstnovel.ƒS.Sound.fade(myfirstnovel.sound.kirchenglocken, 0.2, 0.1, true); // kirchenglocken im dorf
+        await signalDelay2();
         await myfirstnovel.ƒS.update(1);
         await myfirstnovel.ƒS.Speech.tell(myfirstnovel.characters.Narrator, "Jetzt muss ich nur noch das Haus meiner Mutter finden.... Ich könnte....");
         let firstDialogueElementAnswers = {
@@ -354,7 +394,10 @@ var myfirstnovel;
         await myfirstnovel.ƒS.Speech.tell(myfirstnovel.characters.Manalt, "Sie suachet, nooch d Frau Fischer? Hajoo klaaar kenn I Se... ihra jonger isch vor a bar Johr ge Nordamekrika, nochdem d Vater gstorba isch. Sie isch vor a bar Monet vo da Hauptstroß ins Neubaugebiet zoga. Aber jetzt haune au mitkriagt das sie a aubachene Krankheit kriagt hot ond ihr Sohn Sie sogar pflega muaß. I hoff, s god ihr guad ond se wird wieder gsond.... Uffjedafall gugged se au mol im Neubaugebiet nach, gell, jo. Kein Problem. Tschüss. Scheena Dag.");
         await myfirstnovel.ƒS.update(1);
         myfirstnovel.ƒS.Character.hide(myfirstnovel.characters.Manalt);
-        await myfirstnovel.ƒS.Speech.tell(myfirstnovel.characters.Narrator, "Wow was ein netter Mann.. der wusste wohl über das Geschehen im ganzen Dorf bescheid... Naja, ich mach mich auf den Weg ins Neubaugebiet und suche dort.");
+        await myfirstnovel.ƒS.update(1);
+        await myfirstnovel.ƒS.Speech.tell(myfirstnovel.characters.Narrator, "Wow, was ein netter Mann.. der wusste wohl über das Geschehen im ganzen Dorf bescheid... Naja, ich mach mich auf den Weg ins Neubaugebiet und suche dort.");
+        await signalDelay2();
+        await myfirstnovel.ƒS.update(1);
         return "AHaus01";
     }
     myfirstnovel.ADorf01 = ADorf01;
@@ -363,17 +406,22 @@ var myfirstnovel;
 (function (myfirstnovel) {
     async function BDorf01() {
         console.log("BDorf01");
+        let signalDelay2 = myfirstnovel.ƒS.Progress.defineSignal([() => myfirstnovel.ƒS.Progress.delay(2)]);
         await myfirstnovel.ƒS.Location.show(myfirstnovel.locations.rathaus);
         await myfirstnovel.ƒS.update(1);
         await myfirstnovel.ƒS.Speech.tell(myfirstnovel.characters.Narrator, "!no me digas! Das darf doch wohl nicht wahr sein. Das Rathaus hat geschlossen. Dann frage ich am besten diesen alten Mann, ob er mir weiter helfen kann.");
         await myfirstnovel.ƒS.update(1);
         myfirstnovel.ƒS.Speech.clear();
-        myfirstnovel.ƒS.Character.show(myfirstnovel.characters.Manalt, myfirstnovel.characters.Manalt.pose.normal, myfirstnovel.ƒS.positions.bottomleft);
+        myfirstnovel.ƒS.Character.show(myfirstnovel.characters.Manalt, myfirstnovel.characters.Manalt.pose.normal, myfirstnovel.ƒS.positions.bottomcenter);
+        await signalDelay2();
+        await myfirstnovel.ƒS.update(1);
         await myfirstnovel.ƒS.Speech.tell(myfirstnovel.characters.Manalt, "Sie suachet, nooch d Frau Fischer? Hajoo klaaar kenn I Se... ihra jonger isch vor a bar Johr ge Nordamekrika, nochdem d Vater gstorba isch. Sie isch vor a bar Monet vo da Hauptstroß ins Neubaugebiet zoga. Aber jetzt haune au mitkriagt das sie a aubachene Krankheit kriagt hot ond ihr Sohn Sie sogar pflega muaß. I hoff, s god ihr guad ond se wird wieder gsond.... Uffjedafall gugged se au mol im Neubaugebiet nach, gell, jo. Kein Problem. Tschüss. Scheena Dag.");
         await myfirstnovel.ƒS.update(1);
-        myfirstnovel.ƒS.Speech.clear();
         myfirstnovel.ƒS.Character.hide(myfirstnovel.characters.Manalt);
-        await myfirstnovel.ƒS.Speech.tell(myfirstnovel.characters.Narrator, "Wow was ein netter Mann.. der wusste wohl über das geschehen im ganzen Dorf bescheid... Naja, ich mach mich auf den Weg ins Neubaugebiet und suche dort");
+        await myfirstnovel.ƒS.update(1);
+        await myfirstnovel.ƒS.Speech.tell(myfirstnovel.characters.Narrator, "Wow, was ein netter Mann.. der wusste wohl über das Geschehen im ganzen Dorf bescheid... Naja, ich mach mich auf den Weg ins Neubaugebiet und suche dort.");
+        await signalDelay2();
+        await myfirstnovel.ƒS.update(1);
         return "AHaus01";
     }
     myfirstnovel.BDorf01 = BDorf01;
@@ -394,10 +442,13 @@ var myfirstnovel;
     async function AZuhause01() {
         console.log("AZuhause01");
         await myfirstnovel.ƒS.Location.show(myfirstnovel.locations.zuhause);
+        myfirstnovel.ƒS.Sound.fade(myfirstnovel.sound.kirchenglocken, 0, 3, true);
+        myfirstnovel.ƒS.Sound.fade(myfirstnovel.sound.mainTheme, 0.1, 0.3, true);
         await myfirstnovel.ƒS.update(1);
         await myfirstnovel.ƒS.Speech.tell(myfirstnovel.characters.Narrator, "Hallo mein Bruder! Es freut mich sehr dich zu sehen! Du hast es geschafft! Komm mit ich zeige dir wo deine Mutter liegt Sie hat dir etwas wichtiges zu erzählen!");
         await myfirstnovel.ƒS.update(1);
         myfirstnovel.ƒS.Speech.clear();
+        return "AZuhause01";
     }
     myfirstnovel.AZuhause01 = AZuhause01;
 })(myfirstnovel || (myfirstnovel = {}));
@@ -408,7 +459,7 @@ var myfirstnovel;
         await myfirstnovel.ƒS.Location.show(myfirstnovel.locations.villageask);
         await myfirstnovel.ƒS.update(1);
         await myfirstnovel.ƒS.Speech.tell(myfirstnovel.characters.Narrator, "Wow, erstaunlich wie schnell ich nun nach Konstanz gekommen bin....das kann doch nur ein Zufall aufgrund einer Enscheidung gewesen sein...");
-        myfirstnovel.ƒS.Sound.fade(myfirstnovel.sound.backgroundTheme, 0.2, 0.1, true); // kirchenglocken im dorf
+        myfirstnovel.ƒS.Sound.fade(myfirstnovel.sound.kirchenglocken, 0.2, 0.1, true); // kirchenglocken im dorf
         await myfirstnovel.ƒS.update(1);
         await myfirstnovel.ƒS.Speech.tell(myfirstnovel.characters.Narrator, "Jetzt muss ich nur noch das Haus meiner Mutter finden.... Ich könnte....");
         let firstDialogueElementAnswers = {
@@ -442,12 +493,20 @@ var myfirstnovel;
 (function (myfirstnovel) {
     async function ZADorf01() {
         console.log("ZADorf01");
+        let signalDelay2 = myfirstnovel.ƒS.Progress.defineSignal([() => myfirstnovel.ƒS.Progress.delay(2)]);
         await myfirstnovel.ƒS.Location.show(myfirstnovel.locations.villageask);
+        // ƒS.Sound.fade(sound.backgroundTheme, 0.2, 0.1, true); // Kirchglocken
+        await myfirstnovel.ƒS.update(1);
+        myfirstnovel.ƒS.Character.show(myfirstnovel.characters.Manalt, myfirstnovel.characters.Manalt.pose.normal, myfirstnovel.ƒS.positions.bottomcenter);
+        await signalDelay2();
         await myfirstnovel.ƒS.update(1);
         await myfirstnovel.ƒS.Speech.tell(myfirstnovel.characters.Manalt, "Sie suachet, nooch d Frau Fischer? Hajoo klaaar kenn I Se... ihra jonger isch vor a bar Johr ge Nordamekrika, nochdem d Vater gstorba isch. Sie isch vor a bar Monet vo da Hauptstroß ins Neubaugebiet zoga. Aber jetzt haune au mitkriagt das sie a aubachene Krankheit kriagt hot ond ihr Sohn Sie sogar pflega muaß. I hoff, s god ihr guad ond se wird wieder gsond.... Uffjedafall gugged se au mol im Neubaugebiet nach, gell, jo. Kein Problem. Tschüss. Scheena Dag.");
-        myfirstnovel.ƒS.Sound.fade(myfirstnovel.sound.backgroundTheme, 0.2, 0.1, true); // Kirchglocken
         await myfirstnovel.ƒS.update(1);
-        await myfirstnovel.ƒS.Speech.tell(myfirstnovel.characters.Narrator, "Wow was ein netter Mann.. der wusste wohl über das geschehen im ganzen Dorf bescheid... Naja, ich mach mich auf den Weg ins Neubaugebiet und suche dort.");
+        myfirstnovel.ƒS.Character.hide(myfirstnovel.characters.Manalt);
+        await myfirstnovel.ƒS.update(1);
+        await myfirstnovel.ƒS.Speech.tell(myfirstnovel.characters.Narrator, "Wow, was ein netter Mann.. der wusste wohl über das Geschehen im ganzen Dorf bescheid... Naja, ich mach mich auf den Weg ins Neubaugebiet und suche dort.");
+        await signalDelay2();
+        await myfirstnovel.ƒS.update(1);
         return "ZAHaus01";
     }
     myfirstnovel.ZADorf01 = ZADorf01;
@@ -456,15 +515,22 @@ var myfirstnovel;
 (function (myfirstnovel) {
     async function ZBDorf01() {
         console.log("ZBDorf01");
+        let signalDelay2 = myfirstnovel.ƒS.Progress.defineSignal([() => myfirstnovel.ƒS.Progress.delay(2)]);
         await myfirstnovel.ƒS.Location.show(myfirstnovel.locations.rathaus);
         await myfirstnovel.ƒS.update(1);
         await myfirstnovel.ƒS.Speech.tell(myfirstnovel.characters.Narrator, "!no me digas! Das darf doch wohl nicht wahr sein. Das Rathaus hat geschlossen. Dann frage ich am besten diesen alten Mann, ob er mir weiter helfen kann.");
         await myfirstnovel.ƒS.update(1);
         myfirstnovel.ƒS.Speech.clear();
+        myfirstnovel.ƒS.Character.show(myfirstnovel.characters.Manalt, myfirstnovel.characters.Manalt.pose.normal, myfirstnovel.ƒS.positions.bottomcenter);
+        await signalDelay2();
+        await myfirstnovel.ƒS.update(1);
         await myfirstnovel.ƒS.Speech.tell(myfirstnovel.characters.Manalt, "Sie suachet, nooch d Frau Fischer? Hajoo klaaar kenn I Se... ihra jonger isch vor a bar Johr ge Nordamekrika, nochdem d Vater gstorba isch. Sie isch vor a bar Monet vo da Hauptstroß ins Neubaugebiet zoga. Aber jetzt haune au mitkriagt das sie a aubachene Krankheit kriagt hot ond ihr Sohn Sie sogar pflega muaß. I hoff, s god ihr guad ond se wird wieder gsond.... Uffjedafall gugged se au mol im Neubaugebiet nach, gell, jo. Kein Problem. Tschüss. Scheena Dag.");
         await myfirstnovel.ƒS.update(1);
-        myfirstnovel.ƒS.Speech.clear();
-        await myfirstnovel.ƒS.Speech.tell(myfirstnovel.characters.Narrator, "Wow was ein netter Mann.. der wusste wohl über das geschehen im ganzen Dorf bescheid... Naja, ich mach mich auf den Weg ins Neubaugebiet und suche dort");
+        myfirstnovel.ƒS.Character.hide(myfirstnovel.characters.Manalt);
+        await myfirstnovel.ƒS.update(1);
+        await myfirstnovel.ƒS.Speech.tell(myfirstnovel.characters.Narrator, "Wow, was ein netter Mann.. der wusste wohl über das Geschehen im ganzen Dorf bescheid... Naja, ich mach mich auf den Weg ins Neubaugebiet und suche dort.");
+        await signalDelay2();
+        await myfirstnovel.ƒS.update(1);
         return "ZAHaus01";
     }
     myfirstnovel.ZBDorf01 = ZBDorf01;
@@ -485,10 +551,13 @@ var myfirstnovel;
     async function ZBZuhause01() {
         console.log("ZBZuhause01");
         await myfirstnovel.ƒS.Location.show(myfirstnovel.locations.zuhause);
+        myfirstnovel.ƒS.Sound.fade(myfirstnovel.sound.kirchenglocken, 0, 3, true);
+        myfirstnovel.ƒS.Sound.fade(myfirstnovel.sound.mainTheme, 0.1, 0.3, true);
         await myfirstnovel.ƒS.update(1);
         await myfirstnovel.ƒS.Speech.tell(myfirstnovel.characters.Narrator, "Hallo mein Bruder! Es freut mich sehr dich zu sehen! Leider muss ich dir sagen, dass du es nicht rechtzeitig geschafft hast.. Unsere Mutter ist vor wenigen Minuten vom Leichenwaagen abegholt worden..");
         await myfirstnovel.ƒS.update(1);
         myfirstnovel.ƒS.Speech.clear();
+        return "ZBZuhause01";
     }
     myfirstnovel.ZBZuhause01 = ZBZuhause01;
 })(myfirstnovel || (myfirstnovel = {}));
@@ -531,9 +600,14 @@ var myfirstnovel;
     //define sound
     myfirstnovel.sound = {
         //Musik
-        backgroundTheme: "Sound/Music/vn_maintheme_loop.wav",
+        mainTheme: "Sound/Music/vn-maintheme-findingwayhome.wav",
         //Sound
-        click: ""
+        flugplatz: "Sound/Backgrounds/flugplatz.wav",
+        frachtraum: "Sound/Backgrounds/frachtraum.wav",
+        imauto: "Sound/Backgrounds/imauto.wav",
+        kirchenglocken: "Sound/Backgrounds/kirchenglocken.wav",
+        singendevoegel: "Sound/Backgrounds/singendevoegel.wav",
+        train: "Sound/Backgrounds/train.wav"
     };
     //locations
     myfirstnovel.locations = {
@@ -639,7 +713,7 @@ var myfirstnovel;
             name: "Netter Herr",
             origin: myfirstnovel.ƒS.ORIGIN.BOTTOMCENTER,
             pose: {
-                normal: "Images/Characters/Opa.png" // austausch
+                normal: "Images/Characters/Opa.png"
             }
         },
         Teen: {
@@ -730,7 +804,7 @@ var myfirstnovel;
         gameMenu =
             myfirstnovel.ƒS.Menu.create(inGameMenu, buttonFunc, "gameMenu");
         let scenes = [
-            //{ id: "Flughafen01", scene: Flughafen01, name: "Flughafen01" },
+            { id: "Flughafen01", scene: myfirstnovel.Flughafen01, name: "Flughafen01" },
             { id: "Flughafen02", scene: myfirstnovel.Flughafen02, name: "Flughafen02" },
             { id: "Flughafen03", scene: myfirstnovel.Flughafen03, name: "Flughafen03" },
             { id: "Flughafen04", scene: myfirstnovel.Flughafen04, name: "Flughafen04", next: "" },
@@ -744,7 +818,7 @@ var myfirstnovel;
             { id: "Dorf01", scene: myfirstnovel.Dorf01, name: "Dorf01" },
             { id: "ADorf01", scene: myfirstnovel.ADorf01, name: "ADorf01" },
             { id: "BDorf01", scene: myfirstnovel.BDorf01, name: "BDorf01" },
-            { id: "AHaus1", scene: myfirstnovel.AHaus01, name: "AHaus1" },
+            { id: "AHaus01", scene: myfirstnovel.AHaus01, name: "AHaus01" },
             { id: "AZuhause01", scene: myfirstnovel.AZuhause01, name: "AZuhause01" },
             //Zug
             { id: "Flughafenzug", scene: myfirstnovel.Flughafenzug, name: "Flughafenzug", next: "Zug01" },
@@ -755,7 +829,7 @@ var myfirstnovel;
             { id: "ZDorf01", scene: myfirstnovel.ZDorf01, name: "ZDorf01" },
             { id: "ZADorf01", scene: myfirstnovel.ZADorf01, name: "ZADorf01" },
             { id: "ZBDorf01", scene: myfirstnovel.ZBDorf01, name: "ZBDorf01" },
-            { id: "ZAHaus1", scene: myfirstnovel.ZAHaus01, name: "ZAHaus1" },
+            { id: "ZAHaus01", scene: myfirstnovel.ZAHaus01, name: "ZAHaus01" },
             { id: "ZBZuhause01", scene: myfirstnovel.ZBZuhause01, name: "ZBZuhause01" },
             //{ scene: Zug, name: "Zug" },
             //{ scene: city, name: "City" }

@@ -10,6 +10,7 @@ namespace myfirstnovel {
         await ƒS.update(1);
         await ƒS.Speech.tell(characters.Narrator, "3 Stunden später hält ein Auto mit einem netten Fahrer." );
         await signalDelay2();
+        ƒS.Sound.fade(sound.flugplatz, 0, 3, true);
         await ƒS.update(1);
         ƒS.Speech.clear();
         return "Anhalter01"

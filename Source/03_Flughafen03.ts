@@ -7,6 +7,7 @@ namespace myfirstnovel {
     ƒS.Speech.setTickerDelays(30, 2);
 
     await ƒS.Location.show(locations.Flughafen13);
+    ƒS.Sound.fade(sound.flugplatz, 0.1, 0.3, true);
     await ƒS.update(1);
 
     await ƒS.Character.show(characters.Pilot, characters.Pilot.pose.ohne, ƒS.positions.bottomcenter);
@@ -32,6 +33,7 @@ namespace myfirstnovel {
     await ƒS.update(1);
     ƒS.Speech.clear();
     ƒS.Character.hide(characters.Pilot);
+    ƒS.Sound.fade(sound.flugplatz, 0, 3, true);
     await ƒS.update(1);
 
     await ƒS.Speech.tell(characters.Narrator, "Karte von Pilot erhalten und Rucksack geöffnet");
