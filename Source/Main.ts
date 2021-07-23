@@ -209,9 +209,7 @@ namespace myfirstnovel {
     load: "Load",
     close: "Close",
     turnUpVolume: "+",
-    turnDownVolume: "-",
-    credits: "Credits",
-    about: "About"
+    turnDownVolume: "-"
   };
 
   //create Menu with buttons
@@ -251,7 +249,6 @@ namespace myfirstnovel {
         await ƒS.Progress.load();
         break;
     }
-
   };
 
 

@@ -346,10 +346,10 @@ var myfirstnovel;
         console.log("Dorf01");
         let signalDelay2 = myfirstnovel.ƒS.Progress.defineSignal([() => myfirstnovel.ƒS.Progress.delay(2)]);
         await myfirstnovel.ƒS.Location.show(myfirstnovel.locations.villageask);
-        await myfirstnovel.ƒS.update(1);
-        await myfirstnovel.ƒS.Speech.tell(myfirstnovel.characters.Narrator, "Wow, erstaunlich wie schnell ich nun nach Konstanz gekommen bin....das kann doch nur ein Zufall aufgrund einer Enscheidung gewesen sein...");
         myfirstnovel.ƒS.Sound.fade(myfirstnovel.sound.singendevoegel, 0, 3, true); //vogelzwitschern + schritte
         myfirstnovel.ƒS.Sound.fade(myfirstnovel.sound.kirchenglocken, 0.2, 0.1, true); // kirchenglocken im dorf
+        await myfirstnovel.ƒS.update(1);
+        await myfirstnovel.ƒS.Speech.tell(myfirstnovel.characters.Narrator, "Wow, erstaunlich wie schnell ich nun nach Konstanz gekommen bin....das kann doch nur ein Zufall aufgrund einer Enscheidung gewesen sein...");
         await signalDelay2();
         await myfirstnovel.ƒS.update(1);
         await myfirstnovel.ƒS.Speech.tell(myfirstnovel.characters.Narrator, "Jetzt muss ich nur noch das Haus meiner Mutter finden.... Ich könnte....");
@@ -406,13 +406,19 @@ var myfirstnovel;
 (function (myfirstnovel) {
     async function BDorf01() {
         console.log("BDorf01");
+        let animation = {
+            start: { translation: myfirstnovel.ƒS.positions.bottomright },
+            end: { translation: myfirstnovel.ƒS.positions.bottomleft },
+            duration: 1,
+            playmode: myfirstnovel.ƒS.ANIMATION_PLAYMODE.PLAYONCE
+        };
         let signalDelay2 = myfirstnovel.ƒS.Progress.defineSignal([() => myfirstnovel.ƒS.Progress.delay(2)]);
         await myfirstnovel.ƒS.Location.show(myfirstnovel.locations.rathaus);
         await myfirstnovel.ƒS.update(1);
         await myfirstnovel.ƒS.Speech.tell(myfirstnovel.characters.Narrator, "!no me digas! Das darf doch wohl nicht wahr sein. Das Rathaus hat geschlossen. Dann frage ich am besten diesen alten Mann, ob er mir weiter helfen kann.");
         await myfirstnovel.ƒS.update(1);
         myfirstnovel.ƒS.Speech.clear();
-        myfirstnovel.ƒS.Character.show(myfirstnovel.characters.Manalt, myfirstnovel.characters.Manalt.pose.normal, myfirstnovel.ƒS.positions.bottomcenter);
+        await myfirstnovel.ƒS.Character.animate(myfirstnovel.characters.Manalt, myfirstnovel.characters.Manalt.pose.normal, animation);
         await signalDelay2();
         await myfirstnovel.ƒS.update(1);
         await myfirstnovel.ƒS.Speech.tell(myfirstnovel.characters.Manalt, "Sie suachet, nooch d Frau Fischer? Hajoo klaaar kenn I Se... ihra jonger isch vor a bar Johr ge Nordamekrika, nochdem d Vater gstorba isch. Sie isch vor a bar Monet vo da Hauptstroß ins Neubaugebiet zoga. Aber jetzt haune au mitkriagt das sie a aubachene Krankheit kriagt hot ond ihr Sohn Sie sogar pflega muaß. I hoff, s god ihr guad ond se wird wieder gsond.... Uffjedafall gugged se au mol im Neubaugebiet nach, gell, jo. Kein Problem. Tschüss. Scheena Dag.");
@@ -515,13 +521,19 @@ var myfirstnovel;
 (function (myfirstnovel) {
     async function ZBDorf01() {
         console.log("ZBDorf01");
+        let animation = {
+            start: { translation: myfirstnovel.ƒS.positions.bottomright },
+            end: { translation: myfirstnovel.ƒS.positions.bottomleft },
+            duration: 1,
+            playmode: myfirstnovel.ƒS.ANIMATION_PLAYMODE.PLAYONCE
+        };
         let signalDelay2 = myfirstnovel.ƒS.Progress.defineSignal([() => myfirstnovel.ƒS.Progress.delay(2)]);
         await myfirstnovel.ƒS.Location.show(myfirstnovel.locations.rathaus);
         await myfirstnovel.ƒS.update(1);
         await myfirstnovel.ƒS.Speech.tell(myfirstnovel.characters.Narrator, "!no me digas! Das darf doch wohl nicht wahr sein. Das Rathaus hat geschlossen. Dann frage ich am besten diesen alten Mann, ob er mir weiter helfen kann.");
         await myfirstnovel.ƒS.update(1);
         myfirstnovel.ƒS.Speech.clear();
-        myfirstnovel.ƒS.Character.show(myfirstnovel.characters.Manalt, myfirstnovel.characters.Manalt.pose.normal, myfirstnovel.ƒS.positions.bottomcenter);
+        await myfirstnovel.ƒS.Character.animate(myfirstnovel.characters.Manalt, myfirstnovel.characters.Manalt.pose.normal, animation);
         await signalDelay2();
         await myfirstnovel.ƒS.update(1);
         await myfirstnovel.ƒS.Speech.tell(myfirstnovel.characters.Manalt, "Sie suachet, nooch d Frau Fischer? Hajoo klaaar kenn I Se... ihra jonger isch vor a bar Johr ge Nordamekrika, nochdem d Vater gstorba isch. Sie isch vor a bar Monet vo da Hauptstroß ins Neubaugebiet zoga. Aber jetzt haune au mitkriagt das sie a aubachene Krankheit kriagt hot ond ihr Sohn Sie sogar pflega muaß. I hoff, s god ihr guad ond se wird wieder gsond.... Uffjedafall gugged se au mol im Neubaugebiet nach, gell, jo. Kein Problem. Tschüss. Scheena Dag.");
@@ -540,6 +552,8 @@ var myfirstnovel;
     async function ZAHaus01() {
         console.log("ZAHaus01");
         await myfirstnovel.ƒS.Location.show(myfirstnovel.locations.street);
+        myfirstnovel.ƒS.Sound.fade(myfirstnovel.sound.kirchenglocken, 0, 3, true);
+        myfirstnovel.ƒS.Sound.fade(myfirstnovel.sound.mainTheme, 0.1, 0.3, true);
         await myfirstnovel.ƒS.update(1);
         await myfirstnovel.ƒS.Speech.tell(myfirstnovel.characters.Narrator, "Steht dort drüben nicht sogar Fischer auf dem Klingelschild?");
         return "ZBZuhause01";
@@ -759,9 +773,7 @@ var myfirstnovel;
         load: "Load",
         close: "Close",
         turnUpVolume: "+",
-        turnDownVolume: "-",
-        credits: "Credits",
-        about: "About"
+        turnDownVolume: "-"
     };
     //create Menu with buttons
     let gameMenu;
